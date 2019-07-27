@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StatusBar, TouchableOpacity, FlatList, ScrollView } from 'react-native';
+import { View, Text, Image, StatusBar, TouchableOpacity, FlatList, ScrollView, TouchableHighlight } from 'react-native';
 import { ScaledSheet, moderateScale, scale, verticalScale } from 'react-native-size-matters';
-import { Container, Icon, Content } from 'native-base';
+import { Icon } from 'native-base';
 import Video from 'react-native-video';
 
 
@@ -12,14 +12,14 @@ export default class HomeScreen extends Component {
       pausedValue: false,
       data: [
         {
-          video: "https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/l6mdtp77raveftkx6wwm",
+          video: "https://speed.animaker.com/assets/images/landing/videos/youtube-landing-video.mp4",
           title: 'Title of the Ad will be here',
           subTitle: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
           activeHeart: false,
           count: 12,
         },
         {
-          video: "http://djjohalhd.video/get/14233/3/Kala%20Suit%20Ft.%20Bohemia%20(DJJOhAL.Com).mp4",
+          video: "https://speed.animaker.com/assets/images/landing/videos/youtube-landing-video.mp4",
           title: 'Title of the Ad will be here',
           subTitle: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
           activeHeart: false,
@@ -48,8 +48,6 @@ export default class HomeScreen extends Component {
           ref={(ref) => {
             this.player = ref
           }}
-          // Store reference
-          // Store reference
           onBuffer={this.onBuffer}
           onError={this.videoError}
           resizeMode="stretch"
@@ -79,43 +77,46 @@ export default class HomeScreen extends Component {
           </View>
           <Icon type='Entypo' disabled style={styles.footerIcon} name='forward' />
         </View>
+        <View style={{ backgroundColor: '#241912', height: moderateScale(15) }} />
       </View>
     )
   }
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <StatusBar backgroundColor="#241912" barStyle="light-content" />
         <View style={styles.headerStyles}>
-          <Icon name='menu' onPress={() => this.props.handleMenu()} style={styles.headerIcon} />
+          <TouchableHighlight
+            underlayColor={'rgba(255,255,255,0.1)'}
+            onPress={() => this.props.handleMenu()}
+            style={styles.skipButton}>
+            <Icon name='menu' style={styles.headerIcon} />
+          </TouchableHighlight>
           <TouchableOpacity activeOpacity={1} >
             <Image
               style={styles.logoStyles}
-              source={require('./logo.png')}
+              source={require('../../images/logo.png')}
             />
           </TouchableOpacity>
           <Icon disabled type="Entypo" name="dots-three-vertical" style={styles.headerIcon} />
         </View>
-        <ScrollView>
-        <View style={{ backgroundColor: '#fff' }}>
 
-
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ backgroundColor: '#fff', flexGrow: 1 }}>
           <FlatList
             data={this.state.data}
             renderItem={({ item, index }) => this.renderItem(item, index)}
           />
-
-        </View>
         </ScrollView>
-        </View>
+
+      </View>
     );
   }
 }
 
 const styles = ScaledSheet.create({
   headerStyles: {
-    paddingHorizontal: '20@ms',
+    paddingHorizontal: '10@ms',
     backgroundColor: '#241912',
     height: '60@vs',
     flexDirection: 'row',
@@ -136,12 +137,12 @@ const styles = ScaledSheet.create({
     width: '100%',
   },
   titleStyles: {
-    fontSize: '22@ms',
+    fontSize: '20@ms',
     padding: '18@ms',
     color: '#000',
   },
   subTitleStyles: {
-    fontSize: '15@ms',
+    fontSize: '13@ms',
     paddingHorizontal: '18@ms',
     color: 'rgba(0,0,0,0.6)',
     paddingTop: '6@ms'
@@ -163,5 +164,13 @@ const styles = ScaledSheet.create({
   footerIcon: {
     color: '#241912',
     fontSize: '30@ms'
+  },
+  skipButton: {
+    width: '50@s',
+    height: '50@s',
+    borderRadius: '25@s',
+    justifyContent: 'center',
+    alignItems: 'center',
+
   }
 })

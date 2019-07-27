@@ -12,6 +12,7 @@ import {
   Image,
   ImageBackground
 } from 'react-native'
+import { ScaledSheet, moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
 class OffCanvasReveal extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class OffCanvasReveal extends Component {
         backgroundColor: this.props.backgroundColor
       }]}>
         <ImageBackground source={require('../images/BG.png')}
-          style={[styles.offCanvasContainer, {
+          style={[{
             position: 'absolute',
             top: 0,
             bottom: 0,
@@ -87,10 +88,12 @@ class OffCanvasReveal extends Component {
             zIndex: -10
           }]}>
           <Image source={require('../images/dots.png')}
+          resizeMode="stretch"
             style={{
               position: 'absolute',
               height: '100%',
-              width: '100%'
+              width: '100%',
+              bottom:moderateScale(-80)
             }} />
           <View
             style={{
@@ -106,7 +109,7 @@ class OffCanvasReveal extends Component {
           </View>
 
           <Animated.View
-            onStartShouldSetResponder={() => true}
+            onStartShouldSetResponder={() => false}
             onResponderTerminationRequest={() => true}
             onResponderRelease={(evt) => this._gestureControl(evt)}
             style={[styles.activityContainer, {
@@ -148,7 +151,7 @@ class OffCanvasReveal extends Component {
 
   // animate stuffs with hard coded values for fine tuning
   _animateStuffs() {
-    const activityLeftPos = this.props.active ? 250 : 0
+    const activityLeftPos = this.props.active ? scale(260) : 0
     const menuTranslateX = this.props.active ? 0 : -150
 
     Animated.parallel([
@@ -160,7 +163,7 @@ class OffCanvasReveal extends Component {
             {
               toValue: menuTranslateX,
               duration: this.state.animationDuration,
-              delay: 250
+             // delay: 250
             }
           )
         } else {
@@ -169,7 +172,7 @@ class OffCanvasReveal extends Component {
             {
               toValue: menuTranslateX,
               duration: this.state.animationDuration,
-              delay: 400
+              //delay: 400
             }
           )
         }

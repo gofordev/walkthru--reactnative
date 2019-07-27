@@ -4,11 +4,12 @@ import {
   View,
   StatusBar,
   Image,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity
 } from 'react-native'
 import OffCanvasReveal from '../../Components/offcanvasReveal';
 import HomeScreen from './HomeScreen'
-import { ScaledSheet } from 'react-native-size-matters';
+import { ScaledSheet, moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
 
 export default class OffCanvasMenu extends Component {
@@ -48,11 +49,20 @@ export default class OffCanvasMenu extends Component {
           handleBackPress={true}
           menuItems={[{
             title: '',
-            icon: <View style={styles.imageBackground}>
-              <Image source={require('./image.png')} style={styles.userImage} />
+            icon: <View style={styles.profileStyle}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+              <Image source={require('../../images/image.png')} style={styles.userImage} />
+              </TouchableOpacity>
               <Text style={styles.userName}>John Smith</Text>
-              <Text style={styles.menuItems}><Image source={require('../../images/total_earnings.png')} style={styles.iconStyle} />{'   Total Earnings'}</Text>
-              <Text style={styles.menuItems}><Image source={require('../../images/saved_ads.png')} style={styles.iconStyle} />{'   Saved Ads'}</Text>
+              <View style={{flexDirection:'row',paddingLeft:moderateScale(45), paddingBottom:moderateScale(25)}}>
+              <Image resizeMode='stretch' source={require('../../images/total_earnings.png')} style={styles.iconStyle} />
+              <Text style={styles.menuItems}>Total Earnings</Text>
+              </View>
+              <View style={{flexDirection:'row',paddingLeft:moderateScale(45)}}>
+              <Image resizeMode='stretch' source={require('../../images/saved_ads.png')} style={styles.iconStyle} />
+              <Text style={styles.menuItems}>Saved Ads</Text>
+              </View>
+              
             </View>,
             renderScene: <HomeScreen {...this.props} handleMenu={this.handleMenu.bind(this)} />
           }]} />
@@ -63,33 +73,36 @@ export default class OffCanvasMenu extends Component {
 }
 
 const styles = ScaledSheet.create({
-  imageBackground: {
-    width: '100%',
-    marginTop: '60@ms',
+  profileStyle: {
+    marginTop: '20@ms',
     justifyContent: 'center',
-    alignItems: 'center',
-    flex: .55
+    alignSelf: 'center',
+    width: '65%'
   },
   userName: {
     color: '#fff',
-    fontSize: '25@ms',
-    padding: '20@ms'
+    fontSize: '29@ms',
+    alignSelf: 'center',
+    paddingBottom: '25@ms',
+   
   },
   menuItems: {
     color: '#fff',
-    fontSize: '18@ms',
-    padding: '10@ms',
-    width: 200,
-    textAlign: 'left'
+    fontSize: '16@ms',
+    paddingLeft: '20@ms',
   },
   userImage: {
-    height: '120@ms',
-    width: '120@ms',
-    borderRadius: '60@ms'
+    height: '140@s',
+    width: '140@s',
+    borderRadius: '70@s',
+    alignSelf: 'center'
   },
   iconStyle: {
-    height: 20,
-    width: 20,
+    height: '14@s',
+    width: '14@s',
     resizeMode: 'stretch',
+    justifyContent: 'center', 
+    alignSelf: 'center',
+    
   }
 })

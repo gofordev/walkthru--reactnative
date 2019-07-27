@@ -46,7 +46,7 @@ export default class LoginScreen extends Component {
         {/* --------------------------------------------- */}
 
         {/* Login Button Design */}
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={{ marginTop: moderateScale(30) }} >
+        <TouchableOpacity activeOpacity={0.8} onPress={() => this.props.navigation.navigate('Home')} style={{ marginTop: moderateScale(30) }} >
           <View style={styles.buttonView}>
             <Text style={[styles.welStyle, { fontSize: 25, marginTop: 0,fontWeight:'bold' }]}> Log In</Text>
           </View>

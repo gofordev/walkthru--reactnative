@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from 'native-base';
-import { View, Image, StyleSheet, ImageBackground, Text, TextInput, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Image, StyleSheet, ImageBackground, Text, TextInput, TouchableOpacity, StatusBar, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { ScaledSheet, moderateScale } from 'react-native-size-matters';
 export default class Feedback extends Component {
@@ -28,6 +28,15 @@ export default class Feedback extends Component {
     submitFeedback = () => {
         const { checked } = this.state;
         const isAnswerCorrect = checked === 2;
+        checked != 2 ? Alert.alert(
+            'Result',
+            'The answer is incorrect',
+            [
+              
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+          ) : null
         this.props.navigation.navigate('Home', { playAgain: isAnswerCorrect });
 
     }
@@ -51,15 +60,11 @@ export default class Feedback extends Component {
 
                 {/* {INput data Container} */}
                 <View style={styles.InputContainer}>
-                    <TextInput placeholder='Ad will come here..'
-                        placeholderTextColor='#878781'
-                        multiline={true}
-                        fontSize={18}
-                        style={styles.inputstyle}></TextInput>
+                    <Text style={{color:'#fff',fontSize:moderateScale(15)}}>Ad will come here..</Text>
                 </View>
                 {/* ------------------------------------------------ */}
                 {/* Main Label Design */}
-                <View style={{ alignItems: 'center', width: moderateScale(320), justifyContent: 'flex-end' }} >
+                <View style={{ alignItems: 'center', width: '100%',marginTop:moderateScale(20) }} >
                     <Text style={styles.Label1Style}>{'Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit?'}</Text>
                 </View>
                 {/* ------------------------------------------------------- */}
@@ -73,7 +78,7 @@ export default class Feedback extends Component {
                                     <Icon name="md-checkmark-circle" size={30} color={checked === index ? 'green' : 'grey'} />
                                     <Text style={styles.radioBoxLabel}>{item.msg}</Text>
                                 </View>
-                            </ TouchableOpacity>
+                            </TouchableOpacity>
                             )
                         })}
                     </View>
@@ -100,12 +105,13 @@ const styles = ScaledSheet.create({
     backButtonContainer: {
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        width: '100%', height: '60@ms',
+        width: '100%', 
+        height: '60@vs',
         paddingLeft: '20@ms',
         paddingTop: 10
     },
     InputContainer: {
-        height: '80@ms',
+        height: '90@vs',
         width: '320@ms',
         borderColor: '#878781',
         borderWidth: 1,
@@ -127,7 +133,7 @@ const styles = ScaledSheet.create({
         textAlign: 'center'
     },
     Container2: {
-        height: '320@ms',
+        height: '320@vs',
         width: '100%',
         borderTopLeftRadius: '20@ms',
         borderTopRightRadius: '20@ms',
