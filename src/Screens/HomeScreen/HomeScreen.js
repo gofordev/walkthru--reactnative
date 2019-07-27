@@ -12,14 +12,14 @@ export default class HomeScreen extends Component {
       pausedValue: false,
       data: [
         {
-          video: "https://speed.animaker.com/assets/images/landing/videos/youtube-landing-video.mp4",
+          video: require('../../videos/user1.mp4'),
           title: 'Title of the Ad will be here',
           subTitle: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
           activeHeart: false,
           count: 12,
         },
         {
-          video: "https://speed.animaker.com/assets/images/landing/videos/youtube-landing-video.mp4",
+          video: require('../../videos/user2.mp4'),
           title: 'Title of the Ad will be here',
           subTitle: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
           activeHeart: false,
@@ -44,7 +44,7 @@ export default class HomeScreen extends Component {
     const playAgain = navigation.getParam('playAgain', false);
     return (
       <View style={{ flex: 1 }}>
-        <Video source={{ uri: item.video }}
+        <Video source={item.video}
           ref={(ref) => {
             this.player = ref
           }}

@@ -41,6 +41,7 @@ export default class LoginScreen extends Component {
           <TextInput placeholder='Password'
             placeholderTextColor='white'
             fontSize={22}
+            secureTextEntry
             style={styles.inputstyle}></TextInput>
         </View>
         {/* --------------------------------------------- */}

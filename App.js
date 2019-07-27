@@ -9,7 +9,7 @@
 import React, { Component } from 'react';
 import { Drawer } from 'native-base';
 import SideBar from './src/Components/SideBar/SideBar';
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import { createSwitchNavigator, createAppContainer, SafeAreaView } from "react-navigation";
 
 import HomeScreen from './src/Screens/HomeScreen/Drawer';
 import ProfileScreen from './src/Screens/ProfileScreen/ProfileScreen';
@@ -40,4 +40,11 @@ const AppContainer = createAppContainer(createSwitchNavigator(
   }
 ));
 
-export default AppContainer;
+const Navigation = () => {
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#241912' }}>
+      <AppContainer />
+    </SafeAreaView>
+  );
+}
+export default Navigation;

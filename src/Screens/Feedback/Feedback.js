@@ -58,9 +58,9 @@ export default class Feedback extends Component {
                 </View>
                 {/* ---------------------------- */}
 
-                {/* {INput data Container} */}
+                {/* {Input data Container} */}
                 <View style={styles.InputContainer}>
-                    <Text style={{color:'#fff',fontSize:moderateScale(15)}}>Ad will come here..</Text>
+                    <Image source={require('../../images/ad.jpg')} style={{ height: '100%', width: '100%' }} />
                 </View>
                 {/* ------------------------------------------------ */}
                 {/* Main Label Design */}
